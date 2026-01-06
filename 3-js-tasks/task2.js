@@ -1,5 +1,5 @@
 
-    n = 5;
+    n = 3;
 function minimum(a, b){
     if(a<=b){
          return a;
@@ -14,9 +14,9 @@ function minimum(a, b){
 
         for (let j = 0; j < n; j++) {
             let val =minimum(
-               minimum(i, j),
-               minimum(n - 1 - i, n - 1 - j)
-            ) + 1;
+               minimum(i+1, j+1),
+               minimum(n  - i, n - j)
+            ) ;
 
             row += val + " ";
         }
