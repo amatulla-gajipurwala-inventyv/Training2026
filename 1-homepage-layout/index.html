@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="UTF-8" />
+    <title>Auth Page</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+   
+    <input type="radio" name="auth" id="loginRadio" checked />
+    <input type="radio" name="auth" id="signupRadio" />
+    <input type="radio" name="auth" id="fpRadio" />
+
+    <div class="container">
+      <!-- LEFT 70% -->
+      <div class="left">
+        <div class="company">
+          <div class="logo">
+            <img src="inventyvlogo.jpg" alt="Company Logo" />
+          </div>
+          <h1>INVENTYV SOFTWARE SERVICES PVT.LTD</h1>
+          <p>
+            At Inventyv, we build advanced web and mobile applications using the
+            latest technologies. We're focused on delivering high-quality
+            services that help our clients achieve business goals. Our objective
+            is to solve our clients' business challenges... technology is just a
+            tool.
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT 30% -->
+      <div class="right">
+        <div class="toggle">
+          <label for="loginRadio">Login</label>
+          <label for="signupRadio">Sign Up</label>
+        </div>
+
+        <!-- LOGIN -->
+        <form id="loginForm" class="form">
+          <h2>Login</h2>
+          <input type="email" placeholder="Email" required />
+          <input type="password" placeholder="Password" required />
+          <label for="fpRadio" class="forgot">Forgot Password?</label>
+          <button type="submit" formaction="#login">Login</button>
+        </form>
+
+        <!-- SIGNUP -->
+        <form id="signupForm" class="form">
+          <h2>Sign Up</h2>
+          <input type="text" placeholder="Username" required />
+          <input type="email" placeholder="Email" required />
+          <input type="password" placeholder="Password" required />
+          <button type="submit" formaction="#signup">Sign Up</button>
+        </form>
+
+        <!-- FORGOT PASSWORD -->
+        <form id="fpForm" class="form">
+          <h2>Forgot Password</h2>
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit" formaction="#fp">Send Reset Link</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
