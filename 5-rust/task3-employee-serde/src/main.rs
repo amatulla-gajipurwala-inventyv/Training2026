@@ -220,4 +220,21 @@ fn main() {
 
     println!("\nDeserialized Employee Struct:");
     println!("{:?}", employee_from_json);
+    
+    let employee2_from_json: Employee = serde_json::from_str(r#"
+{
+    "id": 2,
+    "name": "Ama",
+    "address": {
+        "street": "456 New Street",
+        "city": "Amd",
+        "zipcode": "400001"
+    },
+    "phone": "999-888-7777",
+    "email": "amatulla21111@gmail.com"
+}
+"#).unwrap();
+
+println!("\nDeserialized Employee Struct:");
+println!("{:?}", employee2_from_json);
 }
