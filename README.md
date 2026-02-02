@@ -29,4 +29,21 @@ This repository contains multiple folders focused on **logic building, frontend 
 │   ├── task1-global.js
 │   └── task3-global.js
 │
+├── 4-exercism-javascript/
+│  
+├── 5-rust/
+│    ├── 1-loops/
+│    ├── 2-structures/
+│    ├── 3-employee-serde/
+         └── README.md
+│    ├── 4-ownership-and-borrowing/
+│    ├── 5-request_counter_synchronisation/
+│        ├── mutex-stats/
+│        └── rwlock-stats/
+|        └── README.md
+│    └── 6-modular-project/
+│        └── README.md
+│
+│  
+│
 └── README.md
