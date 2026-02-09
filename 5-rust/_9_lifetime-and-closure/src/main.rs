@@ -1,5 +1,5 @@
 use core::fmt;
-use std::collections::{HashMap, hash_map::Entry};
+use std::collections::{hash_map::Entry, HashMap};
 
 trait DisplayItem {
     fn display(&self) -> String;
@@ -26,16 +26,16 @@ impl fmt::Display for InventoryError {
     }
 }
 
-struct Inventory<T>
+struct Inventory<'a, T>
 where
-    T: DisplayItem + Clone,
+    T: DisplayItem,
 {
-    items: HashMap<String, T>,
+    items: HashMap<String, &'a T>,
 }
 
-impl<T> Inventory<T>
+impl<'a, T> Inventory<'a, T>
 where
-    T: DisplayItem + Clone,
+    T: DisplayItem,
 {
     fn new() -> Self {
         Self {
@@ -43,15 +43,15 @@ where
         }
     }
 
-    fn add_item(&mut self, id: impl Into<String>, item: T) -> Result<(), InventoryError> {
+    fn add_item(&mut self, id: impl Into<String>, item: &'a T) -> Result<(), InventoryError> {
         let id = id.into();
 
         if id.trim().is_empty() {
             return Err(InventoryError::InvalidId);
         }
 
-        match self.items.entry(id) {
-            Entry::Occupied(e) => Err(InventoryError::DuplicateId(e.key().clone())),
+        match self.items.entry(id.clone()) {
+            Entry::Occupied(_) => Err(InventoryError::DuplicateId(id)),
             Entry::Vacant(e) => {
                 e.insert(item);
                 Ok(())
@@ -59,13 +59,14 @@ where
         }
     }
 
-    fn get_item(&self, id: &str) -> Result<&T, InventoryError> {
+    fn get_item(&self, id: &str) -> Result<&'a T, InventoryError> {
         self.items
             .get(id)
+            .copied()
             .ok_or_else(|| InventoryError::ItemNotFound(id.to_string()))
     }
 
-    fn remove_item(&mut self, id: &str) -> Result<T, InventoryError> {
+    fn remove_item(&mut self, id: &str) -> Result<&'a T, InventoryError> {
         self.items
             .remove(id)
             .ok_or_else(|| InventoryError::ItemNotFound(id.to_string()))
@@ -73,7 +74,7 @@ where
 
     fn display_all_with<F>(&self, formatter: F) -> String
     where
-        F: Fn(&String, &T) -> String,
+        F: Fn(&str, &T) -> String,
     {
         if self.items.is_empty() {
             return "Inventory is empty".to_string();
@@ -87,7 +88,6 @@ where
     }
 }
 
-#[derive(Clone)]
 struct Product {
     name: String,
     price: f64,
@@ -100,50 +100,41 @@ impl DisplayItem for Product {
 }
 
 fn main() {
+    let laptop = Product {
+        name: "Laptop".into(),
+        price: 60000.0,
+    };
+
+    let neckband = Product {
+        name: "Neckband".into(),
+        price: 1500.0,
+    };
+
     let mut inventory = Inventory::<Product>::new();
-
-    let items = [
-        ("P1", Product { name: "Laptop".into(), price: 60000.0 }),
-        ("P2", Product { name: "Neckband".into(), price: 1500.0 }),
-        ("P1", Product { name: "PowerBank".into(), price: 1000.0 }), // duplicate
-        ("", Product { name: "Keyboard".into(), price: 800.0 }),     // invalid
-    ];
-
-    for (id, item) in items {
-        if let Err(e) = inventory.add_item(id, item) {
-            println!("Add failed: {}", e);
-        }
-    }
-
-    match inventory.get_item("P2") {
-        Ok(item) => println!("\nFetched item:\n{}", item.display()),
-        Err(e) => println!("Error: {}", e),
-    }
-
-    match inventory.get_item("P3") {
-        Ok(item) => println!("Fetched item:\n{}", item.display()),
-        Err(e) => println!("Error: {}", e),
-    }
-
     println!(
-        "\nCurrent Inventory:\n{}",
-        inventory.display_all_with(|id, item| {
-            format!("ID: {}\n{}\n", id, item.display())
-        })
+        "\nInventory:\n{}",
+        inventory.display_all_with(|id, item| { format!("ID: {}\n{}\n", id, item.display()) })
     );
 
-    if let Err(e) = inventory.remove_item("P1") {
-        println!("Remove failed: {}", e);
+    inventory.add_item("P1", &laptop).unwrap();
+    inventory.add_item("P2", &neckband).unwrap();
+
+    println!(
+        "\nInventory:\n{}",
+        inventory.display_all_with(|id, item| { format!("ID: {}\n{}\n", id, item.display()) })
+    );
+    match inventory.get_item("P2") {
+        Ok(item) => println!("Fetched: {}", item.display()),
+        Err(e) => println!("Error: {}", e),
     }
 
-    if let Err(e) = inventory.remove_item("P1") {
-        println!("Remove failed: {}", e);
+    match inventory.remove_item("P1") {
+        Ok(item) => println!("Removed: {}", item.display()),
+        Err(e) => println!("Remove error: {}", e),
     }
 
     println!(
-        "\nFinal Inventory:\n{}",
-        inventory.display_all_with(|id, item| {
-            format!("ID: {}\n{}\n", id, item.display())
-        })
+        "\nInventory:\n{}",
+        inventory.display_all_with(|id, item| { format!("ID: {}\n{}\n", id, item.display()) })
     );
 }
