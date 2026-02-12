@@ -1,0 +1,11 @@
+/home/amatulla/Training2026/5-rust/_10_multithreaded_record_manager/target/debug/deps/rand_core-a42bf618f59bca2b.d: /home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/lib.rs /home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/block.rs /home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/utils.rs /home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/seedable_rng.rs /home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/unwrap_err.rs /home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/word.rs /home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/../README.md
+
+/home/amatulla/Training2026/5-rust/_10_multithreaded_record_manager/target/debug/deps/librand_core-a42bf618f59bca2b.rmeta: /home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/lib.rs /home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/block.rs /home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/utils.rs /home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/seedable_rng.rs /home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/unwrap_err.rs /home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/word.rs /home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/../README.md
+
+/home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/lib.rs:
+/home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/block.rs:
+/home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/utils.rs:
+/home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/seedable_rng.rs:
+/home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/unwrap_err.rs:
+/home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/word.rs:
+/home/amatulla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rand_core-0.10.0/src/../README.md:
